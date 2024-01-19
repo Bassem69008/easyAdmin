@@ -10,13 +10,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_EDITOR')]
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(private ChartBuilderInterface $chartBuilder){}
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+        if($this->getUser()->getRoles() ==['ROLE_USER'])
+        {
+            return $this->redirectToRoute('/');
+        }
         $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 
         return $this->render('admin/my-dashboard.html.twig', [
