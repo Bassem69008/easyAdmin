@@ -13,13 +13,13 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // create ADMIN
-        $this->createUser("developer@example.com", "root", ['ROLE_ADMIN'], $manager);
+        $this->createUser("developer@exemple.com", "root", ['ROLE_ADMIN'], $manager);
 
         // create EDITOR
-        $this->createUser("editor@example.com", 'editorPassword', ['ROLE_EDITOR'], $manager);
+        $this->createUser("editor@exemple.com", 'editorPassword', ['ROLE_EDITOR'], $manager);
 
         // create USER
-        $this->createUser('user@example.com', 'userPassword', ['ROLE_USER'], $manager);
+        $this->createUser('user@exemple.com', 'userPassword', ['ROLE_USER'], $manager);
 
 
 
